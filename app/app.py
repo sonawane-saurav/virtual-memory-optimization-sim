@@ -14,3 +14,21 @@ st.title("Virtual Memory Optimization Simulator")
 # Inputs
 page_input = st.text_input("Enter page sequence (comma separated)", "7,0,1,2,0,3,0,4")
 frames = st.number_input("Enter number of frames", min_value=1, value=3, step=1)
+
+# Run Simulation
+if st.button("Run Simulation"):
+    try:
+        pages = [int(x.strip()) for x in page_input.split(",")]
+
+        fifo_faults, fifo_states = fifo(pages, frames)
+        lru_faults, lru_states = lru(pages, frames)
+        opt_faults, opt_states = optimal(pages, frames)
+
+        # Store results in session
+        st.session_state["pages"] = pages
+        st.session_state["fifo"] = (fifo_faults, fifo_states)
+        st.session_state["lru"] = (lru_faults, lru_states)
+        st.session_state["opt"] = (opt_faults, opt_states)
+
+    except:
+        st.error("Invalid input! Please enter numbers like: 7,0,1,2")
