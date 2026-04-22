@@ -32,3 +32,34 @@ if st.button("Run Simulation"):
 
     except:
         st.error("Invalid input! Please enter numbers like: 7,0,1,2")
+
+# Display Results
+if "fifo" in st.session_state:
+
+    pages = st.session_state["pages"]
+    fifo_faults, fifo_states = st.session_state["fifo"]
+    lru_faults, lru_states = st.session_state["lru"]
+    opt_faults, opt_states = st.session_state["opt"]
+
+    st.subheader("Results")
+
+    # Metrics
+    results = {
+        "FIFO": fifo_faults,
+        "LRU": lru_faults,
+        "Optimal": opt_faults
+    }
+
+    comparison = compare_algorithms(results, pages)
+
+    data = []
+    for algo, metrics in comparison.items():
+        data.append({
+            "Algorithm": algo,
+            "Page Faults": metrics["page_faults"],
+            "Hits": metrics["hits"],
+            "Fault Rate": round(metrics["fault_rate"], 3),
+            "Hit Rate": round(metrics["hit_rate"], 3)
+        })
+
+    df = pd.DataFrame(data)
