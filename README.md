@@ -34,6 +34,21 @@ The project provides an interactive interface to input page reference strings an
 
 ---
 
+## Project Structure
+virtual-memory-simulator/
+│
+├── app/
+│ └── app.py # Streamlit UI
+│
+├── core/
+│ ├── fifo.py # FIFO algo implementation
+│ ├── lru.py # LRU algo implementation
+│ ├── optimal.py # Optimal algo implementation
+│ ├── simulator.py # central file for importing algos
+│ └── metrics.py # Performance metric calculations
+│
+└── README.md
+
 ## How It Works
 
 1. The user provides:
