@@ -63,3 +63,36 @@ if "fifo" in st.session_state:
         })
 
     df = pd.DataFrame(data)
+
+    df = pd.DataFrame(data)
+
+    st.subheader("Performance Metrics")
+    st.table(df)
+
+    # Graph
+    st.subheader("Page Fault Comparison")
+
+    chart_data = pd.DataFrame({
+        "Algorithm": ["FIFO", "LRU", "Optimal"],
+        "Page Faults": [fifo_faults, lru_faults, opt_faults]
+    })
+
+    st.bar_chart(chart_data.set_index("Algorithm"))
+
+    # Memory Visualization
+    algo_choice = st.selectbox(
+        "Choose Algorithm to Visualize",
+        ["FIFO", "LRU", "Optimal"]
+    )
+
+    if algo_choice == "FIFO":
+        state_df = pd.DataFrame(fifo_states)
+    elif algo_choice == "LRU":
+        state_df = pd.DataFrame(lru_states)
+    else:
+        state_df = pd.DataFrame(opt_states)
+
+    state_df.columns = [f"Frame{i+1}" for i in range(state_df.shape[1])]
+
+    st.subheader(f"{algo_choice} Memory States")
+    st.dataframe(state_df)
