@@ -49,6 +49,8 @@ virtual-memory-simulator/
 │
 └── README.md
 
+---
+
 ## How It Works
 
 1. The user provides:
