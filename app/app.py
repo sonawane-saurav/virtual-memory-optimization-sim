@@ -3,8 +3,7 @@ import sys
 import os
 import random
 
-# Fix import path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
 from core.simulator import fifo, lru, optimal
