@@ -3,12 +3,9 @@ import sys
 import os
 import random
 
-import streamlit as st
 
-st.write("cwd:", os.getcwd())
-st.write("files:", os.listdir("."))
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, ROOT_DIR)
 
 import streamlit as st
 from core.simulator import fifo, lru, optimal
