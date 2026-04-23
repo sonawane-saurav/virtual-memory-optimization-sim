@@ -3,6 +3,11 @@ import sys
 import os
 import random
 
+import streamlit as st
+
+st.write("cwd:", os.getcwd())
+st.write("files:", os.listdir("."))
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
