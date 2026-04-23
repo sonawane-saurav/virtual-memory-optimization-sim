@@ -88,6 +88,13 @@ pip install streamlit pandas
 streamlit run app/app.py
 ```
 
+
+## Live Demo
+
+Experience the project live here:  
+[Open Streamlit App](https://virtual-memory-optimization-sim-8dqpewwsqweswggv3a7cij.streamlit.app/)
+
+
 ## Example Input
 
 Page Sequence: 7,0,1,2,0,3,0,4
