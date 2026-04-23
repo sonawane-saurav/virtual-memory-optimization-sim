@@ -1,28 +1,42 @@
-'''
-Hits = Total Pages - Page Faults
-Fault Rate = Page Faults / Total Pages
-Hit Rate = Hits / Total Pages
-'''
-
-def calculate_metrics(pages, page_faults):
-    total = len(pages)
-    hits = total - page_faults
-
-    fault_rate = page_faults / total
-    hit_rate = hits / total
-
-    return {
-        "total_pages" : total,
-        "page_faults" : page_faults,
-        "hits" : hits,
-        "fault_rate" : fault_rate,
-        "hit_rate" : hit_rate
-    }
-
 def compare_algorithms(results, pages):
-      comparison = {}
+    """
+    Computes performance metrics for each algorithm.
 
-    for name, faults in results.items():
-        comparison[name] = calculate_metrics(pages, faults)
+    Args:
+        results (dict): {
+            "FIFO": faults,
+            "LRU": faults,
+            "Optimal": faults
+        }
+        pages (list): page reference string
+
+    Returns:
+        dict:
+        {
+            "FIFO": {
+                "page_faults": int,
+                "hits": int,
+                "fault_rate": float,
+                "hit_rate": float
+            },
+            ...
+        }
+    """
+
+    total_requests = len(pages)
+    comparison = {}
+
+    for algo, faults in results.items():
+        hits = total_requests - faults
+
+        fault_rate = faults / total_requests if total_requests > 0 else 0
+        hit_rate = hits / total_requests if total_requests > 0 else 0
+
+        comparison[algo] = {
+            "page_faults": faults,
+            "hits": hits,
+            "fault_rate": fault_rate,
+            "hit_rate": hit_rate
+        }
 
     return comparison
